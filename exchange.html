@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange rates</title>
+</head>
+<body>
+    <div>
+        <div style="display: flex;">
+            <p>Введите сумму:</p>
+            <p style="margin-left: 130px; font-weight: bold;">KZT (tenge)</p>
+            <p style="margin-left: 100px; font-weight: bold;">USD (dollar)</p>
+            <p style="margin-left: 100px; font-weight: bold;">EUR (euro)</p>
+        </div>
+
+        <div>
+            <input type="number" class="sum">
+            <select class="currency">
+                <option selected>KZT</option>
+                <option>USD</option>
+                <option>EUR</option>
+            </select>
+            <input class="kzt" style="background-color: #dddddd;">
+            <input class="usd" style="background-color: #dddddd;">
+            <input class="eur" style="background-color: #dddddd;">
+        </div>
+    </div>
+
+    <script>
+        let sum = document.querySelector(".sum")
+        let kzt = document.querySelector(".kzt")
+        let usd = document.querySelector(".usd")
+        let eur = document.querySelector(".eur")
+        let currency = document.querySelector(".currency")
+
+        sum.addEventListener('input', calc)
+        currency.addEventListener('change', calc)
+        
+        function calc() {
+            clearFields()
+            switch (currency.value) {
+                case "KZT":
+                    kzt.value = "-"
+                    usd.value = sum.value / 431
+                    eur.value = sum.value / 509
+                    break
+                case "USD":
+                    kzt.value = sum.value * 429
+                    usd.value = "-"
+                    eur.value = (sum.value * 429) / 507
+                    break               
+                case "EUR":
+                    kzt.value = sum.value * 507
+                    usd.value = (sum.value * 507) / 429
+                    eur.value = "-"
+                    break
+            }
+        }
+
+        function clearFields() {
+            kzt.value = "";
+            usd.value = "";
+            eur.value = "";
+        }
+
+    </script>
+</body>
+</html>
